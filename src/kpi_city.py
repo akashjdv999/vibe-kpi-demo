@@ -4,9 +4,13 @@ import sqlite3
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = PROJECT_ROOT / "data" / "db" / "analytics.db"
+ALLOWED_CITIES = {"Mumbai", "Delhi", "Bengaluru", "Pune"}
 
 
 def city_kpi(city: str) -> dict[str, float | int]:
+    if city not in ALLOWED_CITIES:
+        raise ValueError(f"Unknown city: {city}")
+
     query = """
         SELECT
             COUNT(*) AS customer_count,

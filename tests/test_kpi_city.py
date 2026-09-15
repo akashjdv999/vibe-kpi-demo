@@ -1,3 +1,5 @@
+import pytest
+
 from src.kpi_city import city_kpi
 
 
@@ -10,8 +12,10 @@ def test_city_kpi_happy_path() -> None:
 
 
 def test_city_kpi_rejects_injection_attempt() -> None:
-    result = city_kpi("Mumbai' OR 1=1 --")
+    with pytest.raises(ValueError):
+        city_kpi("Mumbai' OR 1=1 --")
 
-    assert result["customer_count"] == 0
-    assert result["total_monthly_spend"] == 0
-    assert result["churn_rate"] == 0
+
+def test_city_kpi_rejects_unknown_city() -> None:
+    with pytest.raises(ValueError):
+        city_kpi("Chennai")
