@@ -151,6 +151,7 @@ activemq-data/
 .env
 .envrc
 .venv
+data/db/*.db
 env/
 venv/
 ENV/
@@ -216,3 +217,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+
+# Local databases
+data/db/*.db
+
+# OS junk
+.DS_Store
